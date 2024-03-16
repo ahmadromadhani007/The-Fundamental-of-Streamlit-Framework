@@ -1,0 +1,1 @@
+#Menampilkan sebuah data
