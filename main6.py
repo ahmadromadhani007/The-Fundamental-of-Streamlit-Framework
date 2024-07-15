@@ -62,3 +62,38 @@ st.write('Tinggi saya:', tinggi, 'cm')
 # Membuat perintah slider untuk nilai interval 0-1
 nilai = st.slider('Pilih interval 0-1', min_value=0.0, max_value=1.0, value=0.5)
 st.write('Nilai interval yang dipilih adalah:', nilai)
+
+# select_slider
+opsi = ['sapi', 'anjing', 'burung']
+pilih = st.select_slider('Hewan peliharaan', options=opsi)
+st.write('Pilihan anda:', pilih)
+rentang = range(0, 11)
+pilihan = st.select_slider('Rentang nilai', options=rentang, value=5)
+st.write('Pilihan anda:', pilihan)
+
+# perintah input
+na = st.text_input('Nama :')
+st.write('Nama yang diinputkan ', na)
+nomor = st.number_input('pilihlah angka :', min_value=0, max_value=10)
+st.write('Angka yang dipilih ', nomor)
+txt = st.text_area('Masukan alamat ', )
+st.write('Inputan textArea: ', txt)
+
+#perintah date
+a = st.date_input("Kapan anda nikah.?")
+st.write('Tanggal nikah', a)
+b = st.time_input("Kapan waktu resepsi.?")
+st.write('Waktu Resepsi', b)
+
+#perintah upload
+upload = st.file_uploader('Must be a CSV file !', accept_multiple_files=True)
+st.write('file yang diupload', upload)
+
+#camera input
+picture = st.camera_input('Pilih gambar')
+if picture:
+    st.image(picture)
+
+#color_picker
+warna = st.color_picker('warna', value='#00FFFF')
+st.write('Ini adalah warna', warna)
