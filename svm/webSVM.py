@@ -86,4 +86,4 @@ elif choice == 'Tentang Kami':
     st.write('Kami sangat senang anda belajar machine learning dengan streamlit.')
 elif choice == 'Kontak':
     st.title('Kontak')
-    st.write('Kalian Bisa Menghubungi kami di abu@unuja.ac.id')
+    st.write('Kalian Bisa DM IG @Ahmadromadhanny')
