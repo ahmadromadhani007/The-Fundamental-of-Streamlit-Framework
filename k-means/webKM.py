@@ -1,45 +1,46 @@
-import pickle
-import streamlit as st  
+import pickle 
+import streamlit as st
 
-# Membaca file svm_pickle
-with open('RF_pickle', 'rb') as r:
+# Memuat model dari file pickle
+with open('KM_pickle', 'rb') as r:
     classifier1 = pickle.load(r)
 
-# Menambahkan pilihan
+# Menambahkan pilihan menu
 menu = ['Halaman Utama', 'Tentang Kami', 'Kontak']
 choice = st.sidebar.selectbox('Navigasi', menu)
 
-# Menampilkan konten sesuai dengan pilihan
+# Menampilkan konten sesuai dengan pilihan tab
 if choice == 'Halaman Utama':
-    st.title('Halaman Utama')   
-    
+    st.title('Halaman Utama')
+
     def welcome():  
-        return 'Welcome you all'  
+        return 'Welcome you all'   
         
-    def prediction1(sepal_length1, sepal_width1, petal_length1, petal_width1):    
-        prediction1 = classifier1.predict([[sepal_length1, sepal_width1, petal_length1, petal_width1]])  
-        return prediction1   
-    
+    def prediction1(longitude, latitude):    
+        prediction = classifier1.predict([[longitude, latitude]])  
+        print(prediction)  
+        return prediction   
+        
     def main():  
         st.title('Aplikasi Web Machine Learning')  
-        st.subheader("Prediksi Bunga Iris") 
-        sepal_length1 = st.text_input("Sepal Length", "")  
-        sepal_width1 = st.text_input("Sepal Width", "")  
-        petal_length1 = st.text_input("Petal Length", "")  
-        petal_width1 = st.text_input("Petal Width", "")  
+        st.subheader("Klaster Rumah") 
+        
+        longitude = st.text_input("Longitude", "")  
+        latitude = st.text_input("Latitude", "")   
+       
         result = ""  
-            
         if st.button("Predict"):  
-            result = prediction1(sepal_length1, sepal_width1, petal_length1, petal_width1)
-            if result[0] == 1:
-                result = 'Bunga iris Setosa'
+            result = prediction1(longitude, latitude)
+            if result[0] == 0:
+                result = 'Cukup Tinggi'
+            elif result[0] == 1:
+                result = 'Cukup Tinggi'
             elif result[0] == 2:
-                result = 'Iris-versicolor'
-            elif result[0] == 3:
-                result = 'Iris-virginica'
+                result = 'Lebih Rendah'
                 
-        st.success('Hasil Prediksinya adalah {}'.format(result))
-
+        st.success('Masuk ke Klaster Rumah: {}'.format(result))
+        st.write("Masuk ke Klaster Rumah:", result)
+    
     if __name__ == '__main__':  
         main()
 
@@ -50,4 +51,4 @@ elif choice == 'Tentang Kami':
 
 elif choice == 'Kontak':
     st.title('Kontak')
-    st.write('Kalian bisa menghubungi kami di @Ahmadromadhanny.')
+    st.write('Bisa menghubungi kami di @Ahmadromadhanny.')
